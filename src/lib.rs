@@ -66,8 +66,8 @@ impl Expression {
             },
             Expression::If(e1, e2, e3) => match *e1 {
                 Expression::Value(v1) => match v1 {
-                    Value::True => Some(*e2),  // if true then e1 else e2 => e1
-                    Value::False => Some(*e3), // if false then e1 else e2 => e1
+                    Value::True => Some(*e2),  // if true then e2 else e3 => e2
+                    Value::False => Some(*e3), // if false then e2 else e3 => e3
                     _ => None,                 // mismatched types
                 },
                 _ => Some(Expression::If(Box::new(e1.evaluate()?), e2, e3)), // if E then e else e
